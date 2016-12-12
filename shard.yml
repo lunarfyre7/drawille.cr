@@ -1,0 +1,13 @@
+name: drawille
+version: 0.1.0
+
+authors:
+  - Max Gurela <maxpowa@outlook.com>
+
+crystal: 0.20.1
+
+dependencies:
+  ncurses:
+    github: maxpowa/ncurses-crystal
+
+license: MIT
