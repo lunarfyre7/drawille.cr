@@ -4,7 +4,7 @@ module Drawille
   class Canvas
     include Frameable
 
-    getter :chars
+    getter chars
 
     def initialize(@chars= Hash(Int32, Hash(Int32, Int32)).new)
       clear

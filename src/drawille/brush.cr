@@ -4,10 +4,9 @@ module Drawille
 
   class Brush
 
-    getter :canvas
+    getter canvas
 
-    def initialize(canvas : Drawille::Canvas)
-      @canvas = canvas
+    def initialize(@canvas= Drawille::Canvas.new)
       @state  = {
         :x =>     0,
         :y =>     0,

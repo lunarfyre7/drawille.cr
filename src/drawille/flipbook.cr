@@ -6,12 +6,12 @@ module Drawille
   class FlipBook
     include Frameable
 
-    def initialize
+    def initialize(@snapshots= Array(String).new)
       clear
     end
 
     def clear
-      @snapshots = Array(Array(Char)).new
+      @snapshots = Array(String).new
       @chars     = Hash(Int32, Hash(Int32, Int32)).new
     end
 
@@ -20,10 +20,16 @@ module Drawille
       @chars     =  canvas.chars
     end
 
+    def each_frame(options= Hash(Symbol, Int32 | Bool).new, &block)
+      @snapshots.each do |frame|
+        yield frame
+      end
+    end
+
     # Block specified
     def play(options= Hash(Symbol, Int32 | Bool).new, &block)
       options = {
-        :repeat => false, :fps => 15,
+        :repeat => false, :fps => 6,
         :min_x => 0, :min_y => 0
       }.merge(options)
 
@@ -46,7 +52,7 @@ module Drawille
     # No block specified
     def play(options= Hash(Symbol, Int32 | Bool).new)
       options = {
-        :repeat => false, :fps => 15,
+        :repeat => false, :fps => 6,
         :min_x => 0, :min_y => 0
       }.merge(options)
 
@@ -57,7 +63,7 @@ module Drawille
         repeat(options) do
           each_frame(options) do |frame|
             draw(frame)
-            sleep(1.0/options[:fps])
+            sleep(1.0/options[:fps].as(Int32))
           end
         end
       ensure
