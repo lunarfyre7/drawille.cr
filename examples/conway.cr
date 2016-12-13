@@ -69,25 +69,16 @@ class Conway
 
 end
 
-STDOUT.flush_on_newline = false
+# STDOUT.flush_on_newline = false
 NCurses.init
 
 if (height = NCurses.lines) && (width = NCurses.cols)
-  conway   = Conway.new((height / 3) * 4, (width / 3) * 2 - 2)
-  value = 100
-  while value > 0
-    value = value - 1
+  conway   = Conway.new((height) * 4, (width) * 2 - 2)
+  flipbook = Drawille::FlipBook.new
+
+  flipbook.play do
+    canvas = conway.to_canvas
     conway.evolve
+    canvas
   end
-  frame = conway.to_canvas.frame(Hash(Symbol, Int32 | Bool).new)
-  NCurses.end_win
-  puts frame.dump_unquoted
-  #####
-  # flipbook = Drawille::FlipBook.new
-  #
-  # flipbook.play do
-  #   canvas = conway.to_canvas
-  #   conway.evolve
-  #   canvas
-  # end
 end

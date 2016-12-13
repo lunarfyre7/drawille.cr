@@ -24,11 +24,11 @@ module Drawille
     def rows(options)
       min   = [(@chars.keys.min || 0), 0].min
       if options.has_key?(:min_y)
-        min   = options[:min_y].as(Int32) || [(@chars.keys.min || 0), 0].min
+        min = options[:min_y].as(Int32) || [(@chars.keys.min || 0), 0].min
       end
       max   = @chars.keys.max
       if options.has_key?(:max_y)
-        max   = options[:max_y].as(Int32) ||  @chars.keys.max
+        max = options[:max_y].as(Int32) ||  @chars.keys.max
       end
       return Array(Array(Int32)).new if min.nil? || max.nil?
       options[:min_x] ||= [@chars.reduce(Array(Array(Int32)).new) { |m,x| m << x.last.keys }.flatten.min, 0].min
@@ -37,7 +37,7 @@ module Drawille
     end
 
     def frame(options= Hash(Symbol, Int32 | Bool).new)
-      rows(options).join("\n")
+      rows(options).join('\n')
     end
 
     def char(x, y)
@@ -45,11 +45,7 @@ module Drawille
     end
 
     def to_braille(x)
-      if x > 0
-        (BRAILLE_CHAR_OFFSET + x).unsafe_chr
-      else
-        " "
-      end
+      (BRAILLE_CHAR_OFFSET + x).chr
     end
   end
 end

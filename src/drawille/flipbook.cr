@@ -23,7 +23,7 @@ module Drawille
     # Block specified
     def play(options= Hash(Symbol, Int32 | Bool).new, &block)
       options = {
-        :repeat => false, :fps => 6,
+        :repeat => false, :fps => 15,
         :min_x => 0, :min_y => 0
       }.merge(options)
 
@@ -46,7 +46,7 @@ module Drawille
     # No block specified
     def play(options= Hash(Symbol, Int32 | Bool).new)
       options = {
-        :repeat => false, :fps => 6,
+        :repeat => false, :fps => 15,
         :min_x => 0, :min_y => 0
       }.merge(options)
 
@@ -70,16 +70,15 @@ module Drawille
     end
 
     def draw(frame)
-      clear_screen
+      # clear_screen
       NCurses.setpos(0, 0)
-      # puts frame
       NCurses.addstr(frame)
       NCurses.refresh
     end
 
     def clear_screen
       NCurses.clear
-      # NCurses.refresh
+      NCurses.refresh
     end
   end
 end
