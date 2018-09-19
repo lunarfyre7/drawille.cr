@@ -8,6 +8,6 @@ crystal: 0.20.1
 
 dependencies:
   ncurses:
-    github: maxpowa/ncurses-crystal
+    github: SamualLB/ncurses-crystal
 
 license: MIT
